@@ -1,240 +1,360 @@
-const products = [
-    { 
-        id: 1, 
-        name: "Hoodie Polerón UC Morado", 
-        category: "ropa", 
-        price: 89.90, 
-        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: 2, 
-        name: "Mochila Ergonómica Continental Tech", 
-        category: "mochilas", 
-        price: 119.00, 
-        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: 3, 
-        name: "Mouse Inalámbrico Recargable", 
-        category: "tecnologia", 
-        price: 45.00, 
-        image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: 4, 
-        name: "Polera Deportiva Continental", 
-        category: "ropa", 
-        price: 49.90, 
-        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: 5, 
-        name: "Cuaderno Anillado UC 200 Hojas", 
-        category: "papeleria", 
-        price: 18.50, 
-        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: 6, 
-        name: "Audífonos Bluetooth Over-Ear", 
-        category: "tecnologia", 
-        price: 129.90, 
-        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: 7, 
-        name: "Tomatodo Térmico Acero UC", 
-        category: "mochilas", 
-        price: 35.00, 
-        image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: 8, 
-        name: "Set de Lapiceros Gel + Resaltadores", 
-        category: "papeleria", 
-        price: 15.00, 
-        image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=600&q=80" 
-    }
-];
+/**
+ * Capa de Cliente / Presentación: script.js
+ * Responsabilidad: Consumir productService, controlar filtros/búsqueda,
+ * gestionar el modal de vista rápida, el carrito con descuentos y localStorage.
+ */
+import { productService } from './services/productService.js';
 
-let cart = [];
+let products = [];
+let cart = JSON.parse(localStorage.getItem('uc_market_cart')) || [];
+let currentCategory = 'todos';
+let currentSearch = '';
+let currentSort = 'default';
+let discountApplied = false;
 
-function renderProducts(category = "todos") {
-    const container = document.getElementById("products-grid");
+document.addEventListener('DOMContentLoaded', async () => {
+    if (window.lucide) window.lucide.createIcons();
+    updateCartUI();
+    await refreshCatalog();
+    setupControls();
+    setupCartDrawer();
+    setupProductModal();
+    setupClipboardPromo();
+    setupContactForm();
+});
+
+async function refreshCatalog() {
+    const container = document.getElementById('products-grid');
+    const countLabel = document.getElementById('results-count');
+    const statusLabel = document.getElementById('service-status');
+
     if (!container) return;
-    container.innerHTML = "";
 
-    const filtered = category === "todos" 
-        ? products 
-        : products.filter(p => p.category === category);
+    container.innerHTML = `
+        <div class="col-span-full flex flex-col items-center justify-center py-16 text-brand-800">
+            <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-brand-700 mb-3"></div>
+            <p class="font-bold text-sm">Consultando servicio REST de Continental Market...</p>
+        </div>
+    `;
 
-    filtered.forEach(p => {
-        const card = document.createElement("div");
-        card.className = "product-card bg-white rounded-3xl overflow-hidden border border-purple-100/80 shadow-sm flex flex-col";
-        card.innerHTML = `
-            <div class="h-52 overflow-hidden bg-purple-50 relative flex items-center justify-center">
-                <img src="${p.image}" 
-                     alt="${p.name}" 
-                     class="w-full h-full object-cover"
-                     onerror="this.onerror=null; this.src='https://placehold.co/600x400/5b21b6/ffffff?text=${encodeURIComponent(p.name)}';">
-                <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-brand-900 font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                    ${p.category}
-                </span>
+    const response = await productService.queryProducts({
+        category: currentCategory,
+        search: currentSearch,
+        sort: currentSort
+    });
+
+    products = response.data;
+
+    if (statusLabel) {
+        statusLabel.innerHTML = `
+            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+            Origen de datos: <strong class="text-brand-900">${response.source}</strong>
+        `;
+    }
+
+    if (countLabel) {
+        countLabel.textContent = `${products.length} ${products.length === 1 ? 'producto' : 'productos'}`;
+    }
+
+    renderProducts(products);
+}
+
+function renderProducts(list) {
+    const container = document.getElementById('products-grid');
+    container.innerHTML = '';
+
+    if (list.length === 0) {
+        container.innerHTML = `
+            <div class="col-span-full text-center py-14 bg-white rounded-3xl border border-slate-200">
+                <p class="font-bold text-slate-700">No se encontraron productos con ese criterio</p>
+                <p class="text-xs text-slate-500 mt-1">Intenta con otra palabra clave o selecciona "Todos".</p>
             </div>
-            <div class="p-6 flex flex-col flex-grow">
-                <h3 class="font-extrabold text-gray-900 text-base mb-3 leading-snug">${p.name}</h3>
-                <div class="mt-auto flex items-center justify-between pt-4 border-t border-gray-100">
-                    <div>
-                        <span class="text-xs text-gray-400 block font-medium">Precio</span>
-                        <span class="text-xl font-black text-brand-950">S/ ${p.price.toFixed(2)}</span>
-                    </div>
-                    <button onclick="addToCart(${p.id})" class="bg-brand-800 hover:bg-brand-900 text-white p-3 rounded-2xl transition-all shadow-md shadow-brand-900/20 active:scale-95 flex items-center justify-center">
-                        <i data-lucide="plus" class="w-5 h-5"></i>
-                    </button>
+        `;
+        return;
+    }
+
+    list.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs flex flex-col justify-between p-4 group';
+        card.innerHTML = `
+            <div>
+                <div onclick="window.openProductModal(${p.id})" class="h-52 overflow-hidden bg-purple-50/50 rounded-2xl relative flex items-center justify-center p-5 mb-4 cursor-pointer">
+                    <span class="absolute top-3 left-3 bg-white/95 text-brand-950 text-[10px] font-extrabold px-3 py-1 rounded-full shadow-xs border border-purple-100">
+                        ${p.category.toUpperCase()}
+                    </span>
+                    <span class="absolute bottom-3 right-3 bg-brand-950/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition">
+                        Vista rápida
+                    </span>
+                    <img src="${p.image}" alt="${p.name}" class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                         onerror="this.parentElement.innerHTML='<div class=\\'text-brand-800 font-black text-center\\'>UC MARKET</div>'">
                 </div>
+                <h3 onclick="window.openProductModal(${p.id})" class="font-bold text-slate-900 text-base mb-1 hover:text-brand-800 transition cursor-pointer line-clamp-1">${p.name}</h3>
+                <p class="text-xs text-slate-500 mb-4 flex items-center gap-2">
+                    <span class="text-amber-500 font-bold">★ ${p.rating}</span>
+                    <span>•</span>
+                    <span>Stock: ${p.stock} unid.</span>
+                </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                <div>
+                    <span class="text-[11px] text-slate-400 block font-medium">Precio</span>
+                    <span class="text-lg font-black text-brand-950">S/ ${p.price.toFixed(2)}</span>
+                </div>
+                <button onclick="window.addToCart(${p.id})" class="bg-brand-800 hover:bg-brand-700 active:scale-95 text-white px-4 h-10 rounded-xl flex items-center justify-center gap-1.5 font-bold text-xs shadow-sm transition cursor-pointer">
+                    <span>+ Agregar</span>
+                </button>
             </div>
         `;
         container.appendChild(card);
     });
-    if (window.lucide) lucide.createIcons();
 }
 
-function addToCart(id) {
-    const item = cart.find(x => x.id === id);
-    if (item) {
-        item.quantity++;
-    } else {
-        const product = products.find(x => x.id === id);
-        if (product) cart.push({ ...product, quantity: 1 });
+function setupControls() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            buttons.forEach(b => {
+                b.classList.remove('bg-brand-800', 'text-white');
+                b.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            e.currentTarget.classList.remove('bg-slate-100', 'text-slate-700');
+            e.currentTarget.classList.add('bg-brand-800', 'text-white');
+
+            currentCategory = e.currentTarget.getAttribute('data-category');
+            refreshCatalog();
+        });
+    });
+
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            refreshCatalog();
+        });
     }
-    updateCart();
-    openCart();
+
+    const sortSelect = document.getElementById('sort-select');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            refreshCatalog();
+        });
+    }
 }
 
-function removeFromCart(id) {
-    cart = cart.filter(x => x.id !== id);
-    updateCart();
+// Modal de Vista Rápida
+function setupProductModal() {
+    const modal = document.getElementById('product-modal');
+    const closeBtn = document.getElementById('close-modal-btn');
+
+    window.openProductModal = (id) => {
+        const p = products.find(item => item.id === id);
+        if (!p || !modal) return;
+
+        document.getElementById('modal-img').src = p.image;
+        document.getElementById('modal-cat').textContent = p.category;
+        document.getElementById('modal-title').textContent = p.name;
+        document.getElementById('modal-rating').textContent = `★ ${p.rating} / 5.0 • Disponible (${p.stock} unidades)`;
+        document.getElementById('modal-desc').textContent = p.description;
+        document.getElementById('modal-price').textContent = `S/ ${p.price.toFixed(2)}`;
+
+        const addBtn = document.getElementById('modal-add-btn');
+        addBtn.onclick = () => {
+            window.addToCart(p.id);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        };
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    };
+
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        });
+    }
 }
 
-function changeQuantity(id, delta) {
-    const item = cart.find(x => x.id === id);
-    if (item) {
-        item.quantity += delta;
-        if (item.quantity <= 0) {
-            removeFromCart(id);
+// Carrito de Compras + Cupón
+function saveCart() {
+    localStorage.setItem('uc_market_cart', JSON.stringify(cart));
+}
+
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.remove('opacity-0');
+    setTimeout(() => toast.classList.add('opacity-0'), 2200);
+}
+
+window.addToCart = (id) => {
+    const item = products.find(p => p.id === id);
+    if (!item) return;
+
+    const existing = cart.find(c => c.id === id);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ ...item, qty: 1 });
+    }
+    saveCart();
+    updateCartUI();
+    showToast(`✓ ${item.name} agregado al carrito`);
+};
+
+window.changeQty = (id, delta) => {
+    const item = cart.find(c => c.id === id);
+    if (!item) return;
+
+    item.qty += delta;
+    if (item.qty <= 0) {
+        cart = cart.filter(c => c.id !== id);
+    }
+    saveCart();
+    updateCartUI();
+};
+
+function updateCartUI() {
+    const countBadge = document.getElementById('cart-count');
+    const itemsContainer = document.getElementById('cart-items');
+    const subtotalEl = document.getElementById('cart-subtotal');
+    const discountRow = document.getElementById('discount-row');
+    const discountEl = document.getElementById('cart-discount');
+    const totalEl = document.getElementById('cart-total');
+
+    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const discount = discountApplied ? subtotal * 0.15 : 0;
+    const finalTotal = subtotal - discount;
+
+    if (countBadge) countBadge.textContent = totalQty;
+    if (subtotalEl) subtotalEl.textContent = `S/ ${subtotal.toFixed(2)}`;
+
+    if (discountRow && discountEl) {
+        if (discountApplied && subtotal > 0) {
+            discountRow.classList.remove('hidden');
+            discountRow.classList.add('flex');
+            discountEl.textContent = `- S/ ${discount.toFixed(2)}`;
         } else {
-            updateCart();
+            discountRow.classList.add('hidden');
+            discountRow.classList.remove('flex');
         }
     }
-}
 
-function updateCart() {
-    const container = document.getElementById("cart-items");
-    const countEl = document.getElementById("cart-count");
-    const totalEl = document.getElementById("cart-total");
-
-    if (!container || !countEl || !totalEl) return;
-
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-    countEl.textContent = totalItems;
-    totalEl.textContent = `S/ ${totalPrice.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `S/ ${finalTotal.toFixed(2)}`;
+    if (!itemsContainer) return;
 
     if (cart.length === 0) {
-        container.innerHTML = `
-            <div class="text-center py-16 text-gray-400 flex flex-col items-center justify-center">
-                <div class="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mb-3 text-purple-300">
-                    <i data-lucide="shopping-bag" class="w-8 h-8"></i>
-                </div>
-                <p class="font-medium text-sm text-gray-500">Tu carrito está vacío</p>
-                <p class="text-xs text-gray-400 mt-1">¡Añade algunos productos para comenzar!</p>
+        itemsContainer.innerHTML = `
+            <div class="text-center py-12">
+                <p class="text-slate-400 font-semibold text-sm">Tu carrito está vacío</p>
+                <p class="text-xs text-slate-400 mt-1">Explora el catálogo y agrega productos oficiales.</p>
             </div>
         `;
-    } else {
-        container.innerHTML = cart.map(item => `
-            <div class="py-4 flex items-center space-x-4">
-                <img src="${item.image}" 
-                     class="w-16 h-16 object-cover rounded-xl shadow-sm border border-purple-100"
-                     onerror="this.onerror=null; this.src='https://placehold.co/100x100/5b21b6/ffffff?text=UC';">
-                <div class="flex-grow">
-                    <h4 class="font-bold text-xs text-gray-900 line-clamp-1">${item.name}</h4>
-                    <span class="text-xs font-black text-brand-900">S/ ${item.price.toFixed(2)}</span>
-                    <div class="flex items-center space-x-2 mt-2">
-                        <button onclick="changeQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-100 hover:bg-purple-100 text-gray-700 rounded-lg text-xs flex items-center justify-center font-bold transition">-</button>
-                        <span class="text-xs font-bold text-gray-800 px-1">${item.quantity}</span>
-                        <button onclick="changeQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-100 hover:bg-purple-100 text-gray-700 rounded-lg text-xs flex items-center justify-center font-bold transition">+</button>
-                    </div>
-                </div>
-                <button onclick="removeFromCart(${item.id})" class="text-gray-300 hover:text-red-500 p-1.5 rounded-lg transition">
-                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                </button>
-            </div>
-        `).join('');
-    }
-    if (window.lucide) lucide.createIcons();
-}
-
-const modal = document.getElementById("cart-modal");
-const drawer = document.getElementById("cart-drawer");
-
-function openCart() {
-    if (modal && drawer) {
-        modal.classList.remove("opacity-0", "pointer-events-none");
-        drawer.classList.remove("translate-x-full");
-    }
-}
-
-function closeCart() {
-    if (modal && drawer) {
-        modal.classList.add("opacity-0", "pointer-events-none");
-        drawer.classList.add("translate-x-full");
-    }
-}
-
-document.getElementById("cart-btn")?.addEventListener("click", openCart);
-document.getElementById("close-cart")?.addEventListener("click", closeCart);
-modal?.addEventListener("click", (e) => {
-    if (e.target === modal) closeCart();
-});
-
-document.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-        document.querySelectorAll(".filter-btn").forEach(b => {
-            b.classList.remove("active", "bg-brand-800", "text-white", "shadow-md");
-            b.classList.add("bg-white", "text-gray-600");
-        });
-        e.target.classList.add("active", "bg-brand-800", "text-white", "shadow-md");
-        e.target.classList.remove("bg-white", "text-gray-600");
-        
-        renderProducts(e.target.dataset.category);
-    });
-});
-
-document.getElementById("contact-form")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const feedback = document.getElementById("form-feedback");
-    if (feedback) {
-        feedback.className = "mt-4 p-4 rounded-xl text-sm text-center bg-purple-100 text-brand-950 font-semibold block border border-purple-200";
-        feedback.textContent = "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.";
-        e.target.reset();
-        setTimeout(() => { feedback.classList.add("hidden"); }, 4000);
-    }
-});
-
-document.getElementById("checkout-btn")?.addEventListener("click", () => {
-    if (cart.length === 0) {
-        alert("Agrega productos al carrito antes de finalizar la compra.");
         return;
     }
-    alert("¡Pedido realizado con éxito! Gracias por tu compra en Continental Market.");
-    cart = [];
-    updateCart();
-    closeCart();
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderProducts();
-    updateCart();
-    if (window.lucide) lucide.createIcons();
-});
+    itemsContainer.innerHTML = cart.map(item => `
+        <div class="flex items-center justify-between gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-200/70">
+            <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-contain bg-white rounded-xl p-1.5 border border-slate-100 shrink-0">
+            <div class="flex-grow min-w-0">
+                <h4 class="font-bold text-xs text-slate-800 truncate">${item.name}</h4>
+                <span class="text-xs font-black text-brand-800 block mt-0.5">S/ ${(item.price * item.qty).toFixed(2)}</span>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="window.changeQty(${item.id}, -1)" class="w-7 h-7 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg font-bold text-xs cursor-pointer">-</button>
+                <span class="text-xs font-extrabold w-5 text-center">${item.qty}</span>
+                <button onclick="window.changeQty(${item.id}, 1)" class="w-7 h-7 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg font-bold text-xs cursor-pointer">+</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function setupCartDrawer() {
+    const drawer = document.getElementById('cart-drawer');
+    const panel = document.getElementById('cart-panel');
+    const openBtn = document.getElementById('open-cart-btn');
+    const closeBtn = document.getElementById('close-cart-btn');
+    const backdrop = document.getElementById('cart-backdrop');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const applyCouponBtn = document.getElementById('apply-coupon-btn');
+    const couponInput = document.getElementById('coupon-input');
+    const couponMsg = document.getElementById('coupon-msg');
+
+    const open = () => {
+        drawer.classList.remove('pointer-events-none', 'opacity-0');
+        panel.classList.remove('translate-x-full');
+    };
+
+    const close = () => {
+        drawer.classList.add('pointer-events-none', 'opacity-0');
+        panel.classList.add('translate-x-full');
+    };
+
+    if (openBtn) openBtn.addEventListener('click', open);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    if (backdrop) backdrop.addEventListener('click', close);
+
+    if (applyCouponBtn && couponInput && couponMsg) {
+        applyCouponBtn.addEventListener('click', () => {
+            const code = couponInput.value.trim().toUpperCase();
+            couponMsg.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+            if (code === 'SOYCONTINENTAL') {
+                discountApplied = true;
+                couponMsg.textContent = '✓ Cupón SOYCONTINENTAL aplicado (15% de descuento)';
+                couponMsg.classList.add('text-emerald-600');
+                updateCartUI();
+            } else {
+                discountApplied = false;
+                couponMsg.textContent = '✕ Código inválido. Usa SOYCONTINENTAL';
+                couponMsg.classList.add('text-red-600');
+                updateCartUI();
+            }
+        });
+    }
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) return alert('Agrega productos antes de finalizar tu pedido.');
+            alert('¡Pedido registrado con éxito en Continental Market! Recibirás el comprobante en tu correo institucional.');
+            cart = [];
+            discountApplied = false;
+            saveCart();
+            updateCartUI();
+            close();
+        });
+    }
+}
+
+function setupClipboardPromo() {
+    const btn = document.getElementById('copy-promo-btn');
+    const txt = document.getElementById('promo-text');
+    if (btn && txt) {
+        btn.addEventListener('click', () => {
+            navigator.clipboard.writeText('SOYCONTINENTAL');
+            txt.textContent = '¡CÓDIGO COPIADO!';
+            showToast('✓ Código SOYCONTINENTAL copiado al portapapeles');
+            setTimeout(() => txt.textContent = 'SOYCONTINENTAL', 2000);
+        });
+    }
+}
+
+function setupContactForm() {
+    const form = document.getElementById('contact-form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('✓ Consulta enviada correctamente');
+            form.reset();
+        });
+    }
+}

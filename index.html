@@ -3,404 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Continental Market - Universidad Continental</title>
-
+    <title>Continental Market | Tienda Oficial Universidad Continental</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-   
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
                         brand: {
                             50: '#f5f3ff',
                             100: '#ede9fe',
                             200: '#ddd6fe',
-                            300: '#c4b5fd',
                             600: '#7c3aed',
                             700: '#6d28d9',
                             800: '#5b21b6',
                             900: '#4c1d95',
-                            950: '#2e1065',
+                            950: '#2e1065'
                         }
                     }
                 }
             }
         }
     </script>
-    
     <link rel="stylesheet" href="styles.css">
-    
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-slate-50 text-gray-800 font-sans flex flex-col min-h-screen antialiased selection:bg-purple-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen antialiased selection:bg-brand-600 selection:text-white">
 
-   
-    <div class="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 text-brand-950 font-bold text-xs py-2 px-4 text-center tracking-wide shadow-inner flex items-center justify-center gap-2">
-        <i data-lucide="sparkles" class="w-4 h-4"></i>
-        <span>ENVÍO GRATUITO A CAMPUS HUANCAYO, AREQUIPA, CUSCO Y LIMA NORTE EN COMPRAS MAYORES A S/ 100</span>
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 text-brand-950 text-xs font-extrabold py-2 px-4 text-center tracking-wide shadow-xs">
+        ENVÍO GRATUITO A CAMPUS HUANCAYO, AREQUIPA, CUSCO Y LIMA NORTE EN COMPRAS MAYORES A S/ 100
     </div>
 
-
-    <header class="bg-brand-950/95 backdrop-blur-md text-white sticky top-0 z-40 border-b border-purple-800/40 shadow-2xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-          
-            <a href="#inicio" class="flex items-center space-x-3.5 group">
-                <div class="bg-white px-3 py-1.5 rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-105 flex items-center justify-center min-h-[44px]">
-                    <img src="https://ucontinental.edu.pe/wp-content/uploads/2021/04/logo-universidad-continental.png" 
-                         alt="Logo Universidad Continental" 
-                         class="h-8 w-auto object-contain"
-                         onerror="this.onerror=null; this.remove(); document.getElementById('fallback-logo').classList.remove('hidden');">
-                    
-                   
-                    <div id="fallback-logo" class="hidden flex items-center space-x-2">
-                        <div class="bg-brand-900 text-amber-300 font-black text-sm px-2 py-0.5 rounded-md tracking-wider">UC</div>
-                        <span class="font-extrabold text-brand-950 text-xs tracking-tight uppercase">Continental</span>
-                    </div>
+    <!-- Header / Navbar -->
+    <header class="bg-brand-950/95 backdrop-blur-md text-white sticky top-0 z-40 shadow-lg border-b border-purple-900/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="#inicio" class="flex items-center gap-3 shrink-0 group">
+                <div class="bg-white text-brand-950 font-black px-3 py-1.5 rounded-xl text-sm tracking-tighter flex items-center gap-1.5 shadow-sm group-hover:scale-105 transition">
+                    <span class="bg-brand-800 text-white px-1.5 py-0.5 rounded-md text-xs">UC</span>
+                    <span>CONTINENTAL</span>
                 </div>
-                <div>
-                    <h1 class="font-black text-xl leading-none tracking-tight text-white group-hover:text-amber-300 transition">Continental Market</h1>
-                    <span class="text-xs text-purple-300 font-medium">Tienda Oficial UC</span>
+                <div class="hidden sm:block">
+                    <span class="font-extrabold text-lg block leading-none tracking-tight">Continental Market</span>
+                    <span class="text-[11px] text-purple-300 font-medium">Tienda Oficial Universitaria</span>
                 </div>
             </a>
 
-           
-            <nav class="hidden lg:flex space-x-8 text-sm font-semibold text-purple-100">
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-purple-100">
                 <a href="#inicio" class="hover:text-amber-400 transition">Inicio</a>
                 <a href="#beneficios" class="hover:text-amber-400 transition">Beneficios</a>
                 <a href="#catalogo" class="hover:text-amber-400 transition">Catálogo</a>
-                <a href="#testimonios" class="hover:text-amber-400 transition">Testimonios</a>
+                <a href="#testimonios" class="hover:text-amber-400 transition">Comunidad</a>
                 <a href="#faq" class="hover:text-amber-400 transition">Preguntas</a>
                 <a href="#contacto" class="hover:text-amber-400 transition">Contacto</a>
             </nav>
 
-            
-            <button id="cart-btn" class="relative bg-gradient-to-r from-brand-700 to-brand-600 hover:from-brand-600 hover:to-brand-500 active:scale-95 text-white px-5 py-2.5 rounded-2xl flex items-center space-x-2.5 transition shadow-lg shadow-brand-900/50">
-                <i data-lucide="shopping-bag" class="w-5 h-5 text-amber-300"></i>
-                <span class="font-bold text-sm hidden sm:inline">Carrito</span>
-                <span id="cart-count" class="bg-amber-400 text-brand-950 text-xs font-black px-2 py-0.5 rounded-full shadow-inner">0</span>
-            </button>
+            <div class="flex items-center gap-3">
+                <button id="open-cart-btn" class="bg-brand-800 hover:bg-brand-700 text-white px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2.5 transition shadow-md border border-purple-700/80 cursor-pointer">
+                    <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-400"></i>
+                    <span>Carrito</span>
+                    <span id="cart-count" class="bg-amber-400 text-brand-950 font-black text-xs px-2 py-0.5 rounded-full">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <section id="inicio" class="relative overflow-hidden bg-gradient-to-br from-brand-950 via-brand-900 to-slate-950 text-white py-20 lg:py-28 px-4">
-        
-        <div class="absolute -top-24 -left-24 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute top-1/2 -right-24 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto relative z-10 text-center md:text-left md:flex md:items-center md:justify-between gap-12">
-            <div class="md:w-1/2 space-y-6">
-                <span class="inline-flex items-center gap-2 bg-purple-500/20 text-purple-200 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest border border-purple-400/30 backdrop-blur-sm">
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span> Comunidad Continental
-                </span>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none text-white">
-                    Lleva el orgullo <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-amber-300 to-purple-100">UC</span> en cada paso
-                </h2>
-                <p class="text-purple-100/90 text-lg leading-relaxed max-w-xl font-normal">
-                    Tu tienda institucional con prendas oficiales, tecnología indispensable y útiles académicos diseñados para acompañarte en tu formación universitaria.
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-pattern bg-gradient-to-br from-brand-950 via-brand-900 to-brand-800 text-white py-16 md:py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center relative z-10">
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center gap-2 bg-purple-900/90 border border-purple-700 text-purple-200 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>ARQUITECTURA MODULAR • API REST EN TIEMPO REAL</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
+                    Lleva el orgullo <span class="text-amber-400">UC</span> en cada paso
+                </h1>
+                <p class="text-purple-100/90 text-lg mb-8 leading-relaxed max-w-xl">
+                    Equipa tu vida universitaria con prendas oficiales, mochilas ergonómicas y accesorios exclusivos sincronizados mediante nuestra capa de servicios.
                 </p>
-
-                
-                <div class="grid grid-cols-3 gap-4 pt-4 border-t border-purple-800/60 max-w-lg">
-                    <div>
-                        <span class="text-2xl font-black text-amber-300 block">+15,000</span>
-                        <span class="text-xs text-purple-200">Alumnos Equipados</span>
-                    </div>
-                    <div>
-                        <span class="text-2xl font-black text-amber-300 block">4 Campus</span>
-                        <span class="text-xs text-purple-200">Envíos Directos</span>
-                    </div>
-                    <div>
-                        <span class="text-2xl font-black text-amber-300 block">100%</span>
-                        <span class="text-xs text-purple-200">Garantía Oficial</span>
-                    </div>
+                <div class="flex flex-wrap gap-4 mb-10">
+                    <a href="#catalogo" class="bg-amber-400 hover:bg-amber-300 text-brand-950 font-extrabold px-7 py-4 rounded-2xl transition shadow-lg shadow-amber-400/20 flex items-center gap-2">
+                        <span>EXPLORAR CATÁLOGO</span>
+                        <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#beneficios" class="bg-white/10 hover:bg-white/15 text-white font-bold px-7 py-4 rounded-2xl border border-white/20 transition">
+                        Conocer Beneficios
+                    </a>
                 </div>
 
-                <div class="pt-2 flex flex-wrap gap-4 justify-center md:justify-start">
-                    <a href="#catalogo" class="bg-amber-400 hover:bg-amber-300 text-brand-950 font-black px-8 py-4 rounded-2xl shadow-xl hover:shadow-amber-400/20 transition transform hover:-translate-y-1 text-sm uppercase tracking-wider">
-                        Explorar Catálogo
-                    </a>
-                    <a href="#beneficios" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-4 rounded-2xl border border-white/20 backdrop-blur-md transition text-sm">
-                        Ver Beneficios
-                    </a>
+                <!-- Métricas institucionales -->
+                <div class="grid grid-cols-3 gap-6 pt-6 border-t border-purple-800/80 max-w-lg">
+                    <div>
+                        <span class="text-2xl sm:text-3xl font-black text-amber-400 block">+15,000</span>
+                        <span class="text-xs text-purple-200">Alumnos equipados</span>
+                    </div>
+                    <div>
+                        <span class="text-2xl sm:text-3xl font-black text-white block">4 Campus</span>
+                        <span class="text-xs text-purple-200">Entrega directa</span>
+                    </div>
+                    <div>
+                        <span class="text-2xl sm:text-3xl font-black text-white block">100%</span>
+                        <span class="text-xs text-purple-200">Garantía oficial</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="md:w-5/12 mt-12 md:mt-0 flex justify-center">
-                <div class="relative bg-white/10 backdrop-blur-2xl p-8 rounded-3xl border border-white/20 text-center shadow-2xl max-w-sm hover:border-purple-300/50 transition duration-300">
-                    <div class="w-20 h-20 bg-gradient-to-br from-amber-300 to-amber-500 rounded-2xl mx-auto flex items-center justify-center mb-5 text-brand-950 shadow-xl transform -rotate-3">
-                        <i data-lucide="graduation-cap" class="w-10 h-10"></i>
+            <!-- Tarjeta Código Promocional -->
+            <div class="lg:col-span-5">
+                <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 text-center max-w-md mx-auto shadow-2xl relative">
+                    <span class="absolute -top-3 right-6 bg-emerald-500 text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
+                        CUPÓN ACTIVO
+                    </span>
+                    <div class="w-16 h-16 bg-amber-400 text-brand-950 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg rotate-3">
+                        <i data-lucide="graduation-cap" class="w-9 h-9"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-white mb-2">Descuento Estudiantil</h3>
-                    <p class="text-purple-100/80 text-sm leading-relaxed mb-6">Ingresa tu correo institucional <strong class="text-amber-300 font-semibold">@continental.edu.pe</strong> y obtén 15% OFF inmediato.</p>
-                    <div class="bg-brand-950/80 rounded-xl p-3 border border-purple-400/20 text-xs font-mono text-purple-200 flex items-center justify-between">
-                        <span>CÓDIGO: <strong class="text-amber-300">SOYCONTINENTAL</strong></span>
-                        <i data-lucide="copy" class="w-4 h-4 cursor-pointer hover:text-white" title="Copiar código"></i>
-                    </div>
+                    <h2 class="text-2xl font-extrabold mb-2">15% OFF Estudiantil</h2>
+                    <p class="text-purple-200 text-sm mb-6 leading-relaxed">
+                        Copia el código promocional y aplícalo directamente en tu carrito de compras antes de finalizar tu pedido.
+                    </p>
+                    <button id="copy-promo-btn" class="w-full bg-brand-950/90 hover:bg-brand-950 border border-purple-500/60 py-4 px-4 rounded-2xl font-mono font-bold text-amber-400 tracking-widest flex items-center justify-center gap-3 transition cursor-pointer group">
+                        <span id="promo-text">SOYCONTINENTAL</span>
+                        <i data-lucide="copy" class="w-4 h-4 text-purple-300 group-hover:text-white transition"></i>
+                    </button>
+                    <p class="text-[11px] text-purple-300 mt-3">Válido para toda la comunidad @continental.edu.pe</p>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <section id="beneficios" class="py-16 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="p-6 rounded-2xl bg-purple-50/50 border border-purple-100 flex items-start space-x-4">
-                    <div class="p-3 bg-brand-800 text-white rounded-xl">
-                        <i data-lucide="truck" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-900 mb-1">Envíos a Campus</h4>
-                        <p class="text-xs text-gray-500 leading-relaxed">Recoge tus pedidos directamente en tu sede sin costo adicional.</p>
-                    </div>
-                </div>
-                <div class="p-6 rounded-2xl bg-purple-50/50 border border-purple-100 flex items-start space-x-4">
-                    <div class="p-3 bg-brand-800 text-white rounded-xl">
-                        <i data-lucide="shield-check" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-900 mb-1">Calidad Garantizada</h4>
-                        <p class="text-xs text-gray-500 leading-relaxed">Prendas y materiales con estándares de durabilidad institucional.</p>
-                    </div>
-                </div>
-                <div class="p-6 rounded-2xl bg-purple-50/50 border border-purple-100 flex items-start space-x-4">
-                    <div class="p-3 bg-brand-800 text-white rounded-xl">
-                        <i data-lucide="credit-card" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-900 mb-1">Pago Seguro</h4>
-                        <p class="text-xs text-gray-500 leading-relaxed">Aceptamos Yape, Plin, tarjetas de crédito/débito y bancarias.</p>
-                    </div>
-                </div>
-                <div class="p-6 rounded-2xl bg-purple-50/50 border border-purple-100 flex items-start space-x-4">
-                    <div class="p-3 bg-brand-800 text-white rounded-xl">
-                        <i data-lucide="headphones" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-900 mb-1">Soporte Alumno</h4>
-                        <p class="text-xs text-gray-500 leading-relaxed">Atención inmediata a través de nuestros canales de contacto.</p>
-                    </div>
-                </div>
+    <!-- Sección de Beneficios -->
+    <section id="beneficios" class="py-12 bg-white border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-purple-200 transition">
+                <div class="bg-purple-100 text-brand-800 p-3.5 rounded-xl shrink-0"><i data-lucide="truck" class="w-6 h-6"></i></div>
+                <div><h3 class="font-bold text-sm text-slate-900">Recojo en Campus</h3><p class="text-xs text-slate-500 mt-0.5">Sin costo adicional en sede</p></div>
+            </div>
+            <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-purple-200 transition">
+                <div class="bg-purple-100 text-brand-800 p-3.5 rounded-xl shrink-0"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                <div><h3 class="font-bold text-sm text-slate-900">Calidad Certificada</h3><p class="text-xs text-slate-500 mt-0.5">Merchandising oficial UC</p></div>
+            </div>
+            <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-purple-200 transition">
+                <div class="bg-purple-100 text-brand-800 p-3.5 rounded-xl shrink-0"><i data-lucide="credit-card" class="w-6 h-6"></i></div>
+                <div><h3 class="font-bold text-sm text-slate-900">Múltiples Pagos</h3><p class="text-xs text-slate-500 mt-0.5">Yape, Plin y tarjetas</p></div>
+            </div>
+            <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-purple-200 transition">
+                <div class="bg-purple-100 text-brand-800 p-3.5 rounded-xl shrink-0"><i data-lucide="layers" class="w-6 h-6"></i></div>
+                <div><h3 class="font-bold text-sm text-slate-900">Capa de Servicio</h3><p class="text-xs text-slate-500 mt-0.5">Consumo API REST asíncrono</p></div>
             </div>
         </div>
     </section>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full" id="catalogo">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="text-xs font-bold uppercase tracking-widest text-brand-800 bg-purple-100 px-3.5 py-1.5 rounded-full">Nuestros Productos</span>
-            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mt-3">Catálogo Exclusivo</h2>
-            <p class="text-gray-500 mt-2 text-base">Filtra según tus necesidades y equipa tu ciclo universitario</p>
-            
-            <div class="flex flex-wrap justify-center gap-2.5 mt-8" id="category-filters">
-                <button class="filter-btn active bg-brand-800 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition shadow-md" data-category="todos">Todos</button>
-                <button class="filter-btn bg-white text-gray-600 hover:bg-purple-50 border border-gray-200 px-5 py-2.5 rounded-xl font-semibold text-sm transition" data-category="ropa">Ropa UC</button>
-                <button class="filter-btn bg-white text-gray-600 hover:bg-purple-50 border border-gray-200 px-5 py-2.5 rounded-xl font-semibold text-sm transition" data-category="tecnologia">Tecnología</button>
-                <button class="filter-btn bg-white text-gray-600 hover:bg-purple-50 border border-gray-200 px-5 py-2.5 rounded-xl font-semibold text-sm transition" data-category="mochilas">Mochilas & Accesorios</button>
-                <button class="filter-btn bg-white text-gray-600 hover:bg-purple-50 border border-gray-200 px-5 py-2.5 rounded-xl font-semibold text-sm transition" data-category="papeleria">Papelería</button>
+    <!-- Catálogo de Productos -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-brand-700 bg-purple-100 px-3 py-1 rounded-full">Catálogo 2026</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-950 mt-3 mb-3">Equipa tu Ciclo Universitario</h2>
+            <p class="text-slate-500 text-sm sm:text-base">Explora, filtra por categoría o busca directamente el artículo oficial que necesitas.</p>
+        </div>
+
+        <!-- Barra de Controles: Filtros + Buscador + Ordenamiento -->
+        <div class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-xs mb-8 space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <!-- Botones de Categoría -->
+                <div class="flex flex-wrap gap-2" id="filter-buttons">
+                    <button data-category="todos" class="filter-btn bg-brand-800 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow-xs transition cursor-pointer">Todos</button>
+                    <button data-category="Mochilas" class="filter-btn bg-slate-100 hover:bg-purple-50 text-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer">Mochilas</button>
+                    <button data-category="Ropa UC" class="filter-btn bg-slate-100 hover:bg-purple-50 text-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer">Ropa UC</button>
+                    <button data-category="Accesorios" class="filter-btn bg-slate-100 hover:bg-purple-50 text-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer">Accesorios</button>
+                </div>
+
+                <!-- Buscador y Ordenamiento -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                        <input type="text" id="search-input" placeholder="Buscar producto..." class="w-full sm:w-56 pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-600 focus:bg-white transition">
+                    </div>
+                    <select id="sort-select" class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 focus:outline-none focus:border-brand-600 cursor-pointer">
+                        <option value="default">Ordenar: Destacados</option>
+                        <option value="price-asc">Precio: Menor a Mayor</option>
+                        <option value="price-desc">Precio: Mayor a Menor</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Barra de estado de la Capa de Servicio -->
+            <div class="flex flex-wrap justify-between items-center pt-3 border-t border-slate-100 text-xs text-slate-500 gap-2">
+                <span id="service-status" class="flex items-center gap-2 font-medium">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                    Iniciando capa de servicio...
+                </span>
+                <span id="results-count" class="font-bold text-brand-900 bg-purple-50 px-3 py-1 rounded-lg">Cargando catálogo...</span>
             </div>
         </div>
 
-        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> </div>
+        <!-- Grilla de Productos -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </main>
 
-    <section id="testimonios" class="py-16 bg-slate-100 border-y border-gray-200">
+    <!-- Sección de Testimonios de Estudiantes -->
+    <section id="testimonios" class="bg-white py-16 border-t border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-xl mx-auto mb-12">
-                <h2 class="text-3xl font-black text-gray-900">Opiniones de Estudiantes</h2>
-                <p class="text-gray-500 mt-2 text-sm">Lo que dicen tus compañeros sobre Continental Market</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-200/80 space-y-4">
-                    <div class="flex text-amber-400 gap-1">
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                    </div>
-                    <p class="text-gray-600 text-sm leading-relaxed">"El polerón es super abrigador y de gran calidad. Llegó a mi campus en Huancayo al día siguiente."</p>
-                    <div class="flex items-center space-x-3 pt-2">
-                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center font-bold text-brand-900 text-sm">MC</div>
-                        <div>
-                            <h5 class="font-bold text-gray-900 text-sm">Mateo Cárdenas</h5>
-                            <span class="text-xs text-gray-400">Ingeniería de Sistemas</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-200/80 space-y-4">
-                    <div class="flex text-amber-400 gap-1">
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                    </div>
-                    <p class="text-gray-600 text-sm leading-relaxed">"La mochila tech es súper espaciosa y perfecta para llevar mi laptop a clases. Además aproveché el descuento."</p>
-                    <div class="flex items-center space-x-3 pt-2">
-                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center font-bold text-amber-800 text-sm">VS</div>
-                        <div>
-                            <h5 class="font-bold text-gray-900 text-sm">Valeria Silva</h5>
-                            <span class="text-xs text-gray-400">Administración y Marketing</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-200/80 space-y-4">
-                    <div class="flex text-amber-400 gap-1">
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                    </div>
-                    <p class="text-gray-600 text-sm leading-relaxed">"Proceso de compra rapidísimo con Yape. Los audífonos tienen un sonido excelente para estudiar."</p>
-                    <div class="flex items-center space-x-3 pt-2">
-                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center font-bold text-brand-900 text-sm">JR</div>
-                        <div>
-                            <h5 class="font-bold text-gray-900 text-sm">Jorge Ramos</h5>
-                            <span class="text-xs text-gray-400">Derecho - Campus Arequipa</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq" class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-black text-gray-900">Preguntas Frecuentes</h2>
-                <p class="text-gray-500 mt-2 text-sm">Resuelve tus dudas sobre envíos y compras</p>
+                <h2 class="text-3xl font-extrabold text-brand-950 mb-2">Lo que dicen nuestros estudiantes</h2>
+                <p class="text-slate-500 text-sm">Experiencias reales de compras en los diferentes campus UC</p>
             </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100">
+                    <div class="flex text-amber-400 mb-3 gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">"La mochila Continental Tech tiene excelente acabado y espacio acolchado para mi laptop. La recogí en el campus Huancayo el mismo día."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-brand-800 text-white font-bold text-xs flex items-center justify-center">VM</div>
+                        <div><span class="font-bold text-xs block text-slate-900">Valeria Mendoza</span><span class="text-[11px] text-slate-500">Ing. de Sistemas • Campus Huancayo</span></div>
+                    </div>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100">
+                    <div class="flex text-amber-400 mb-3 gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">"Usé el cupón SOYCONTINENTAL para comprar mi casaca institucional y me descontaron el 15% al instante. Muy buena atención."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-brand-800 text-white font-bold text-xs flex items-center justify-center">JR</div>
+                        <div><span class="font-bold text-xs block text-slate-900">Jorge Ramírez</span><span class="text-[11px] text-slate-500">Arquitectura • Campus Arequipa</span></div>
+                    </div>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100">
+                    <div class="flex text-amber-400 mb-3 gap-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">"Excelente plataforma, rápida y fácil de usar desde el celular. El anillo de graduación UC es un gran recuerdo."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-brand-800 text-white font-bold text-xs flex items-center justify-center">AC</div>
+                        <div><span class="font-bold text-xs block text-slate-900">Andrea Castillo</span><span class="text-[11px] text-slate-500">Derecho • Campus Cusco</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="space-y-4">
-                <details class="group bg-slate-50 p-6 rounded-2xl border border-gray-200 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold text-gray-900 text-base">
-                        <span>¿Cómo recojo mi pedido en el Campus?</span>
-                        <span class="transition group-open:-rotate-180">
-                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-800"></i>
-                        </span>
+    <!-- Sección de Preguntas Frecuentes (FAQ) -->
+    <section id="faq" class="py-16 bg-slate-50 border-t border-slate-200/80">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl font-extrabold text-brand-950 text-center mb-8">Preguntas Frecuentes</h2>
+            <div class="space-y-3">
+                <details class="group bg-white rounded-2xl border border-slate-200 p-5 cursor-pointer">
+                    <summary class="font-bold text-sm text-slate-900 flex justify-between items-center list-none">
+                        <span>¿Cómo aplico el descuento estudiantil del 15%?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-700 group-open:rotate-180 transition"></i>
                     </summary>
-                    <p class="mt-3 text-sm text-gray-600 leading-relaxed">
-                        Al realizar tu compra, selecciona la opción "Recojo en Campus". Te enviaremos un correo cuando tu producto esté listo para ser recogido en la oficina de Atención al Estudiante con tu DNI o carnet universitario.
-                    </p>
+                    <p class="text-sm text-slate-600 mt-3 pt-3 border-t border-slate-100">Agrega tus productos al carrito, abre el panel lateral e ingresa el código <strong>SOYCONTINENTAL</strong> en la casilla de cupón para calcular el descuento automáticamente.</p>
                 </details>
-
-                <details class="group bg-slate-50 p-6 rounded-2xl border border-gray-200 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold text-gray-900 text-base">
-                        <span>¿Cómo aplico mi descuento de estudiante?</span>
-                        <span class="transition group-open:-rotate-180">
-                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-800"></i>
-                        </span>
+                <details class="group bg-white rounded-2xl border border-slate-200 p-5 cursor-pointer">
+                    <summary class="font-bold text-sm text-slate-900 flex justify-between items-center list-none">
+                        <span>¿Dónde puedo recoger mi pedido en campus?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-700 group-open:rotate-180 transition"></i>
                     </summary>
-                    <p class="mt-3 text-sm text-gray-600 leading-relaxed">
-                        Solo debes usar el código <strong class="text-brand-800">SOYCONTINENTAL</strong> al momento de completar tu compra o registrarte con tu correo institucional @continental.edu.pe.
-                    </p>
-                </details>
-
-                <details class="group bg-slate-50 p-6 rounded-2xl border border-gray-200 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold text-gray-900 text-base">
-                        <span>¿Qué métodos de pago están disponibles?</span>
-                        <span class="transition group-open:-rotate-180">
-                            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-800"></i>
-                        </span>
-                    </summary>
-                    <p class="mt-3 text-sm text-gray-600 leading-relaxed">
-                        Aceptamos Yape, Plin, tarjetas de débito/crédito (Visa, Mastercard) y transferencias bancarias directas a la cuenta institucional.
-                    </p>
+                    <p class="text-sm text-slate-600 mt-3 pt-3 border-t border-slate-100">Los pedidos se entregan en el módulo de Atención al Estudiante de los campus Huancayo, Arequipa, Cusco y Lima Norte presentando tu carné universitario o DNI.</p>
                 </details>
             </div>
         </div>
     </section>
 
-    <section id="nosotros" class="bg-gradient-to-b from-purple-50 to-white border-y border-purple-100/80 py-16">
-        <div class="max-w-5xl mx-auto px-4 text-center space-y-4">
-            <span class="text-brand-800 font-bold text-xs uppercase tracking-widest bg-purple-100 px-3.5 py-1.5 rounded-full">Plataforma Oficial UC</span>
-            <h2 class="text-3xl font-extrabold text-gray-900">Sobre Continental Market</h2>
-            <p class="text-gray-600 leading-relaxed text-base max-w-3xl mx-auto">
-                Proyecto desarrollado para conectar a la comunidad de la Universidad Continental con merchandising oficial de alta calidad. Garantizamos una experiencia rápida e intuitiva para que lleves tu identidad académica con orgullo.
-            </p>
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="bg-purple-50/70 py-16 border-t border-purple-100">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-purple-100">
+                <h2 class="text-2xl font-extrabold text-brand-950 mb-2 text-center">¿Consultas sobre pedidos?</h2>
+                <p class="text-sm text-slate-500 text-center mb-6">Escríbenos y te responderemos a tu correo institucional.</p>
+                <form id="contact-form" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nombre Completo</label>
+                            <input type="text" required placeholder="Ej. Carlos Flores" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-600 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Correo Institucional</label>
+                            <input type="email" required placeholder="codigo@continental.edu.pe" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-600 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mensaje</label>
+                        <textarea rows="3" required placeholder="Escribe tu consulta aquí..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-600 text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-800 hover:bg-brand-900 text-white font-bold py-3.5 rounded-xl transition shadow-md cursor-pointer">
+                        Enviar Consulta
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
-    <section id="contacto" class="max-w-3xl mx-auto px-4 py-16 w-full">
-        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-purple-100">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Contacto y Consultas</h2>
-                <p class="text-gray-500 mt-2 text-sm">¿Tienes alguna duda sobre tu compra? Déjanos un mensaje.</p>
-            </div>
-
-            <form id="contact-form" class="space-y-5">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nombre Completo</label>
-                    <input type="text" id="nombre" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-700 focus:border-brand-700 focus:outline-none transition text-sm bg-gray-50/50" placeholder="Ej. Ana Lucía Pérez">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Correo Electrónico</label>
-                    <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-700 focus:border-brand-700 focus:outline-none transition text-sm bg-gray-50/50" placeholder="estudiante@continental.edu.pe">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Mensaje</label>
-                    <textarea id="mensaje" rows="4" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-700 focus:border-brand-700 focus:outline-none transition text-sm bg-gray-50/50 resize-none" placeholder="Escribe tu consulta aquí..."></textarea>
-                </div>
-                <button type="submit" class="w-full bg-brand-800 hover:bg-brand-900 active:scale-[0.99] text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-brand-900/20 text-sm">
-                    Enviar Mensaje
-                </button>
-            </form>
-            <div id="form-feedback" class="mt-4 p-4 rounded-xl text-sm text-center font-medium hidden"></div>
-        </div>
-    </section>
-
-    <footer class="bg-brand-950 text-white py-12 border-t border-purple-900/60 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
-            <div class="flex justify-center items-center space-x-2 text-amber-400 font-bold">
-                <i data-lucide="award" class="w-5 h-5"></i>
-                <span>Universidad Continental — Proyecto Académico</span>
-            </div>
-            <p class="text-sm font-medium text-purple-200">© 2026 Continental Market — Todos los derechos reservados.</p>
-            <p class="text-xs text-purple-400">Desarrollado para el Producto Académico N°1 | Programación Web</p>
+    <!-- Footer -->
+    <footer class="bg-brand-950 text-purple-200 py-10 text-center text-sm border-t border-purple-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="font-extrabold text-white text-base">Continental Market – Universidad Continental</p>
+            <p class="text-xs text-purple-300 mt-1">Proyecto Académico • Programación Web (Arquitectura de Capa de Servicio REST)</p>
         </div>
     </footer>
 
-    <div id="cart-modal" class="fixed inset-0 bg-brand-950/60 backdrop-blur-sm z-50 flex justify-end opacity-0 pointer-events-none transition-all duration-300">
-        <div class="bg-white w-full max-w-md h-full flex flex-col shadow-2xl transform translate-x-full transition-transform duration-300" id="cart-drawer">
-            <div class="p-5 bg-brand-950 text-white flex justify-between items-center border-b border-purple-800">
-                <div class="flex items-center space-x-3">
-                    <div class="p-2 bg-brand-800 rounded-xl">
-                        <i data-lucide="shopping-cart" class="w-5 h-5 text-amber-300"></i>
+    <!-- Modal de Vista Rápida de Producto -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-purple-100 animate-fade-in">
+            <div class="grid md:grid-cols-2">
+                <div class="bg-purple-50/70 p-8 flex items-center justify-center relative">
+                    <img id="modal-img" src="" alt="" class="max-h-64 object-contain">
+                </div>
+                <div class="p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <span id="modal-cat" class="text-[11px] font-extrabold uppercase bg-purple-100 text-brand-900 px-3 py-1 rounded-full"></span>
+                            <button id="close-modal-btn" class="text-slate-400 hover:text-slate-700 p-1 cursor-pointer">
+                                <i data-lucide="x" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                        <h3 id="modal-title" class="text-xl font-extrabold text-slate-900 mb-2"></h3>
+                        <p id="modal-rating" class="text-xs font-semibold text-amber-600 mb-4"></p>
+                        <p id="modal-desc" class="text-xs text-slate-600 leading-relaxed mb-6"></p>
                     </div>
-                    <h3 class="font-extrabold text-lg">Tu Carrito</h3>
+                    <div>
+                        <div class="flex items-center justify-between mb-4 pt-4 border-t border-slate-100">
+                            <span class="text-xs text-slate-500 font-medium">Precio Oficial:</span>
+                            <span id="modal-price" class="text-2xl font-black text-brand-950"></span>
+                        </div>
+                        <button id="modal-add-btn" class="w-full bg-brand-800 hover:bg-brand-900 text-white font-bold py-3.5 rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-400"></i>
+                            <span>Agregar al Carrito</span>
+                        </button>
+                    </div>
                 </div>
-                <button id="close-cart" class="p-2 hover:bg-brand-800 rounded-xl transition text-purple-200 hover:text-white">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-
-            <div id="cart-items" class="flex-grow overflow-y-auto p-5 divide-y divide-gray-100"></div>
-
-            <div class="p-5 border-t border-gray-100 bg-purple-50/50 space-y-4">
-                <div class="flex justify-between items-center">
-                    <span class="text-sm font-semibold text-gray-500">Total a pagar:</span>
-                    <span id="cart-total" class="text-2xl font-black text-brand-950">S/ 0.00</span>
-                </div>
-                <button id="checkout-btn" class="w-full bg-brand-800 hover:bg-brand-900 active:scale-98 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-brand-900/30 flex items-center justify-center space-x-2 text-sm">
-                    <span>Finalizar Pedido</span>
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Notificación Toast flotante -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-950 text-white text-xs font-bold px-5 py-3 rounded-full shadow-xl border border-purple-700 opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+        Producto agregado al carrito
+    </div>
+
+    <!-- Drawer Lateral del Carrito -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
+        <div id="cart-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs"></div>
+        <aside id="cart-panel" class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
+            <div class="p-6 bg-brand-950 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 text-amber-400"></i>
+                    <h3 class="font-bold text-lg">Tu Carrito</h3>
+                </div>
+                <button id="close-cart-btn" class="text-purple-300 hover:text-white p-1 cursor-pointer">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-3"></div>
+
+            <!-- Sección de Cupón y Totales -->
+            <div class="p-6 border-t border-slate-200 bg-slate-50 space-y-4">
+                <div class="flex gap-2">
+                    <input type="text" id="coupon-input" placeholder="Cupón (ej. SOYCONTINENTAL)" class="flex-grow px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold uppercase focus:outline-none focus:border-brand-600">
+                    <button id="apply-coupon-btn" class="bg-brand-800 hover:bg-brand-900 text-white text-xs font-bold px-4 py-2 rounded-xl transition cursor-pointer">Aplicar</button>
+                </div>
+                <p id="coupon-msg" class="text-[11px] font-bold hidden"></p>
+
+                <div class="space-y-1.5 text-sm pt-2 border-t border-slate-200/80">
+                    <div class="flex justify-between text-slate-500 text-xs">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">S/ 0.00</span>
+                    </div>
+                    <div id="discount-row" class="justify-between text-emerald-600 font-bold text-xs hidden">
+                        <span>Descuento Estudiantil (15%):</span>
+                        <span id="cart-discount">- S/ 0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-1">
+                        <span class="text-slate-800 font-bold">Total a pagar:</span>
+                        <span id="cart-total" class="text-2xl font-black text-brand-950">S/ 0.00</span>
+                    </div>
+                </div>
+
+                <button id="checkout-btn" class="w-full bg-amber-400 hover:bg-amber-300 text-brand-950 font-extrabold py-3.5 rounded-xl shadow-md transition cursor-pointer">
+                    Finalizar Pedido →
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <script type="module" src="script.js"></script>
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    </script>
 </body>
 </html>
