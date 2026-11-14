@@ -1,8 +1,3 @@
-/**
- * Capa de Cliente / Presentación: script.js
- * Responsabilidad: Consumir productService, controlar filtros/búsqueda,
- * gestionar el modal de vista rápida, el carrito con descuentos y localStorage.
- */
 import { productService } from './services/productService.js';
 
 let products = [];
@@ -142,7 +137,6 @@ function setupControls() {
     }
 }
 
-// Modal de Vista Rápida
 function setupProductModal() {
     const modal = document.getElementById('product-modal');
     const closeBtn = document.getElementById('close-modal-btn');
@@ -183,7 +177,6 @@ function setupProductModal() {
     }
 }
 
-// Carrito de Compras + Cupón
 function saveCart() {
     localStorage.setItem('uc_market_cart', JSON.stringify(cart));
 }

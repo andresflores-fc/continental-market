@@ -1,10 +1,3 @@
-/**
- * Capa de Servicio: productService.js
- * Responsabilidad: Gestionar el consumo asíncrono desde FakeStore API,
- * mapear los productos al catálogo institucional de la Universidad Continental,
- * y proveer filtrado, búsqueda y ordenamiento desacoplados de la vista.
- */
-
 const API_BASE_URL = 'https://fakestoreapi.com/products';
 
 const UC_BRANDING_MAP = [

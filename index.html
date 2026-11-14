@@ -34,12 +34,10 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen antialiased selection:bg-brand-600 selection:text-white">
 
-    <!-- Top Announcement Bar -->
     <div class="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 text-brand-950 text-xs font-extrabold py-2 px-4 text-center tracking-wide shadow-xs">
         ENVÍO GRATUITO A CAMPUS HUANCAYO, AREQUIPA, CUSCO Y LIMA NORTE EN COMPRAS MAYORES A S/ 100
     </div>
 
-    <!-- Header / Navbar -->
     <header class="bg-brand-950/95 backdrop-blur-md text-white sticky top-0 z-40 shadow-lg border-b border-purple-900/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <a href="#inicio" class="flex items-center gap-3 shrink-0 group">
@@ -72,7 +70,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="inicio" class="hero-pattern bg-gradient-to-br from-brand-950 via-brand-900 to-brand-800 text-white py-16 md:py-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center relative z-10">
             <div class="lg:col-span-7">
@@ -96,7 +93,6 @@
                     </a>
                 </div>
 
-                <!-- Métricas institucionales -->
                 <div class="grid grid-cols-3 gap-6 pt-6 border-t border-purple-800/80 max-w-lg">
                     <div>
                         <span class="text-2xl sm:text-3xl font-black text-amber-400 block">+15,000</span>
@@ -113,7 +109,6 @@
                 </div>
             </div>
 
-            <!-- Tarjeta Código Promocional -->
             <div class="lg:col-span-5">
                 <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 text-center max-w-md mx-auto shadow-2xl relative">
                     <span class="absolute -top-3 right-6 bg-emerald-500 text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
@@ -136,7 +131,6 @@
         </div>
     </section>
 
-    <!-- Sección de Beneficios -->
     <section id="beneficios" class="py-12 bg-white border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-purple-200 transition">
@@ -158,7 +152,6 @@
         </div>
     </section>
 
-    <!-- Catálogo de Productos -->
     <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full">
         <div class="text-center max-w-2xl mx-auto mb-10">
             <span class="text-xs font-extrabold uppercase tracking-wider text-brand-700 bg-purple-100 px-3 py-1 rounded-full">Catálogo 2026</span>
@@ -166,10 +159,8 @@
             <p class="text-slate-500 text-sm sm:text-base">Explora, filtra por categoría o busca directamente el artículo oficial que necesitas.</p>
         </div>
 
-        <!-- Barra de Controles: Filtros + Buscador + Ordenamiento -->
         <div class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-xs mb-8 space-y-4">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <!-- Botones de Categoría -->
                 <div class="flex flex-wrap gap-2" id="filter-buttons">
                     <button data-category="todos" class="filter-btn bg-brand-800 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow-xs transition cursor-pointer">Todos</button>
                     <button data-category="Mochilas" class="filter-btn bg-slate-100 hover:bg-purple-50 text-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer">Mochilas</button>
@@ -177,7 +168,6 @@
                     <button data-category="Accesorios" class="filter-btn bg-slate-100 hover:bg-purple-50 text-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer">Accesorios</button>
                 </div>
 
-                <!-- Buscador y Ordenamiento -->
                 <div class="flex flex-col sm:flex-row gap-3">
                     <div class="relative">
                         <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
@@ -191,7 +181,6 @@
                 </div>
             </div>
 
-            <!-- Barra de estado de la Capa de Servicio -->
             <div class="flex flex-wrap justify-between items-center pt-3 border-t border-slate-100 text-xs text-slate-500 gap-2">
                 <span id="service-status" class="flex items-center gap-2 font-medium">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
@@ -201,11 +190,9 @@
             </div>
         </div>
 
-        <!-- Grilla de Productos -->
         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </main>
 
-    <!-- Sección de Testimonios de Estudiantes -->
     <section id="testimonios" class="bg-white py-16 border-t border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -247,7 +234,6 @@
         </div>
     </section>
 
-    <!-- Sección de Preguntas Frecuentes (FAQ) -->
     <section id="faq" class="py-16 bg-slate-50 border-t border-slate-200/80">
         <div class="max-w-3xl mx-auto px-4">
             <h2 class="text-3xl font-extrabold text-brand-950 text-center mb-8">Preguntas Frecuentes</h2>
@@ -270,7 +256,6 @@
         </div>
     </section>
 
-    <!-- Sección de Contacto -->
     <section id="contacto" class="bg-purple-50/70 py-16 border-t border-purple-100">
         <div class="max-w-2xl mx-auto px-4">
             <div class="bg-white p-8 rounded-3xl shadow-sm border border-purple-100">
@@ -299,7 +284,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-brand-950 text-purple-200 py-10 text-center text-sm border-t border-purple-900">
         <div class="max-w-7xl mx-auto px-4">
             <p class="font-extrabold text-white text-base">Continental Market – Universidad Continental</p>
@@ -307,7 +291,6 @@
         </div>
     </footer>
 
-    <!-- Modal de Vista Rápida de Producto -->
     <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs">
         <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-purple-100 animate-fade-in">
             <div class="grid md:grid-cols-2">
@@ -341,12 +324,10 @@
         </div>
     </div>
 
-    <!-- Notificación Toast flotante -->
     <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-950 text-white text-xs font-bold px-5 py-3 rounded-full shadow-xl border border-purple-700 opacity-0 pointer-events-none transition-opacity duration-300 z-50">
         Producto agregado al carrito
     </div>
 
-    <!-- Drawer Lateral del Carrito -->
     <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
         <div id="cart-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs"></div>
         <aside id="cart-panel" class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
@@ -362,7 +343,6 @@
 
             <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-3"></div>
 
-            <!-- Sección de Cupón y Totales -->
             <div class="p-6 border-t border-slate-200 bg-slate-50 space-y-4">
                 <div class="flex gap-2">
                     <input type="text" id="coupon-input" placeholder="Cupón (ej. SOYCONTINENTAL)" class="flex-grow px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold uppercase focus:outline-none focus:border-brand-600">
